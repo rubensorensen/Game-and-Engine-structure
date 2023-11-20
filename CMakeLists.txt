@@ -7,13 +7,12 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# file(GLOB_RECURSE ENGINE_SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/engine/src/*.cpp)
-# file(GLOB_RECURSE ENGINE_INC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/engine/include/*.cpp)
+file(GLOB_RECURSE ENGINE_SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/engine/src/*.cpp)
+file(GLOB_RECURSE ENGINE_INC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/engine/include/*.cpp)
 
 add_library(engine SHARED
-  # ENGINE_SRC_FILES
-  # ENGINE_INC_FILES
-  ./engine/src/core.cpp
+  ${ENGINE_SRC_FILES}
+  ${ENGINE_INC_FILES}
 )
 
 target_include_directories(engine
@@ -21,15 +20,14 @@ target_include_directories(engine
   ./engine/include/
 )
 
-# target_compile_definitions(engine PRIVATE __declspec(dllexport) FOO=1 BAR=1)
+target_compile_definitions(engine PRIVATE COMPILING_ENGINE)
 
-# file(GLOB_RECURSE GAME_SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/game/src/*.cpp)
-# file(GLOB_RECURSE GAME_INC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/game/include/*.cpp)
+file(GLOB_RECURSE GAME_SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/game/src/*.cpp)
+file(GLOB_RECURSE GAME_INC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/game/include/*.cpp)
 
 add_executable(game
-  # GAME_SRC_FILES
-  # GAME_INC_FILES
-  ./game/src/main.cpp
+  ${GAME_SRC_FILES}
+  ${GAME_INC_FILES}
 )
 
 target_include_directories(game
