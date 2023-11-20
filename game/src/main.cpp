@@ -1,16 +1,16 @@
 #include <iostream>
 
-#include "core.hpp"
+#include "window.hpp"
 
-int
-main(void)
+int main(void)
 {
-  std::cout << "Hello world!" << std::endl;
-  int a = 4;
-  int b = 2;
-  int c = add_numbers(4, 2);
-  
-  std::cout << "Result = " << c << std::endl;
-  
-  return 0;
+	Window window("Window 1", 1280, 720);
+
+	while (!window.should_close()) {
+		window.update();
+
+		poll_events();
+	}
+
+	return 0;
 }

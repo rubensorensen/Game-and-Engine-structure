@@ -1,7 +1,10 @@
 #include "core.hpp"
 
-int
-add_numbers(int a, int b)
+#include <GLFW/glfw3.h>
+
+
+void
+poll_events()
 {
-  return a + b;
+	glfwPollEvents();
 }
