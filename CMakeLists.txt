@@ -9,5 +9,26 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
 
-add_subdirectory(engine/)
-add_subdirectory(game/)
+set(GLFW_LIBRARY_TYPE STATIC)
+add_subdirectory(extern/glfw)
+
+file(GLOB_RECURSE SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
+file(GLOB_RECURSE INC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp)
+
+add_library(engine SHARED
+  ${SRC_FILES}
+  ${INC_FILES}
+)
+
+target_compile_definitions(engine PRIVATE COMPILING_ENGINE)
+
+target_include_directories(engine PUBLIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/
+  ${CMAKE_CURRENT_SOURCE_DIR}/extern/glfw/include/
+)
+
+target_link_libraries(engine PRIVATE
+  glfw
+)
+
+add_subdirectory(projects/test_project)
