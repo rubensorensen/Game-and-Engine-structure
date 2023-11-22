@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(GLFW_LIBRARY_TYPE STATIC)
-add_subdirectory(extern/glfw)
+add_subdirectory(engine/extern/glfw)
 
 file(GLOB_RECURSE ENGINE_SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/engine/src/*.cpp)
 file(GLOB_RECURSE ENGINE_INC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/engine/include/*.cpp)
@@ -23,7 +23,7 @@ target_compile_definitions(engine PRIVATE COMPILING_ENGINE)
 target_include_directories(engine
   PUBLIC
   ./engine/include/
-  ./extern/glfw/include/
+  ./engine/extern/glfw/include/
 )
 
 target_link_libraries(engine
